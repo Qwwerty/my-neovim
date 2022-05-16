@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+  Plug 'fedepujol/move.nvim'
 
   if (has("nvim"))
     Plug 'nvim-lua/plenary.nvim'
@@ -151,6 +152,15 @@ nnoremap <leader>; A;<esc>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" " Vim move """"""""""""""""""""""""""""""""'""""""""""""""""""""""'""""""""""""""""""""""""""""""""
+nnoremap <silent> <A-j> :MoveLine(1)<CR>
+nnoremap <silent> <A-k> :MoveLine(-1)<CR>
+vnoremap <silent> <A-j> :MoveBlock(1)<CR>
+vnoremap <silent> <A-k> :MoveBlock(-1)<CR>
+nnoremap <silent> <A-l> :MoveHChar(1)<CR>
+nnoremap <silent> <A-h> :MoveHChar(-1)<CR>
+vnoremap <silent> <A-l> :MoveHBlock(1)<CR>
+vnoremap <silent> <A-h> :MoveHBlock(-1)<CR>
 
 
 
