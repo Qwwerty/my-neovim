@@ -10,7 +10,7 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
   Plug 'honza/vim-snippets'
-  Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'projekt0n/github-nvim-theme'
   Plug 'jiangmiao/auto-pairs'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'MaxMEllon/vim-jsx-pretty'
@@ -68,7 +68,6 @@ let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 0
 let g:sonokai_diagnostic_line_highlight = 1
 let g:sonokai_current_word = 'bold'
-colorscheme dracula
 
 if (has("nvim")) "Transparent background. Only for nvim
     highlight Normal guibg=NONE ctermbg=NONE
@@ -76,6 +75,22 @@ if (has("nvim")) "Transparent background. Only for nvim
 endif
 
 let g:airline_theme = 'sonokai'
+
+
+" Theme Temporary
+" Example config in VimScript
+" NOTE: Configuration needs to be set BEFORE loading the color scheme with `colorscheme` command
+let g:github_function_style = "italic"
+let g:github_sidebars = ["qf", "vista_kind", "terminal", "packer"]
+
+" Change the "hint" color to the "orange" color, and make the "error" color bright red
+let g:github_colors = {
+  \ 'hint': 'orange',
+  \ 'error': '#ff0000'
+\ }
+
+" Load the colorscheme
+colorscheme github_dark
 
 
 " Remaps """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,10 +130,6 @@ vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 nmap <C-t> :CocCommand prettier.formatFile<CR>
 
-" Move line up, Move line down
-nmap n :m +1<CR>
-nmap m :m -2<CR>
-
 function! HighlightWordUnderCursor()
     if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
         exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
@@ -129,13 +140,12 @@ endfunction
 
 autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
 
-
+let mapleader="\<space>"
+nnoremap <leader>; A;<esc>
 
 
 "" autocmd """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmds aqui
-
-
 
 " " AirLine """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
@@ -177,7 +187,7 @@ endif
 
 " COC (Conquer of Completion) """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-explorer', 'coc-css', 'coc-eslint', 'coc-highlight', 'coc-html', 'coc-html-css-support', 'coc-markdownlint', 'coc-snippets', 'coc-tailwindcss', 'coc-vetur']
+let g:coc_global_extensions = ['coc-snippets', 'coc-explorer', 'coc-css', 'coc-eslint', 'coc-highlight', 'coc-html', 'coc-html-css-support', 'coc-markdownlint', 'coc-snippets', 'coc-tailwindcss']
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
